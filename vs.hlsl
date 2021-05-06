@@ -138,63 +138,33 @@ VS_OUTPUT main(VS_INPUT input)
 {
     initAttributes(input);
 
-    int _instance_picture_task_address_11037 =
-    {
-        0
-};
+    int _instance_picture_task_address_11037 = (_aData.y >> 16);
 
-    (_instance_picture_task_address_11037 = (_aData.y >> 16));
-
-    int2 _tmpvar_21038 =
-    {
-        0, 0
-};
+    int2 _tmpvar_21038;
 
     (_tmpvar_21038.x = int_ctor((2 * (uint_ctor(_aData.x) % 512))));
 
     (_tmpvar_21038.y = int_ctor((uint_ctor(_aData.x) / 512)));
 
-    float4 _tmpvar_31039 =
-    {
-        0, 0, 0, 0
-};
+    float4 _tmpvar_31039 = gl_texture2DFetch(_sPrimitiveHeadersF, _tmpvar_21038, 0);
 
-    (_tmpvar_31039 = gl_texture2DFetch(_sPrimitiveHeadersF, _tmpvar_21038, 0));
-
-    int2 _tmpvar_41040 =
-    {
-        0, 0
-};
+    int2 _tmpvar_41040;
 
     (_tmpvar_41040.x = int_ctor((2 * (uint_ctor(_aData.x) % 512))));
 
     (_tmpvar_41040.y = int_ctor((uint_ctor(_aData.x) / 512)));
 
-    int4 _tmpvar_51041 =
-    {
-        0, 0, 0, 0
-};
+    int4 _tmpvar_51041 = gl_texture2D_int4_Fetch(_sPrimitiveHeadersI, _tmpvar_41040, 0);
 
-    (_tmpvar_51041 = gl_texture2D_int4_Fetch(_sPrimitiveHeadersI, _tmpvar_41040, 0));
-
-    int2 _tmpvar_61042 =
-    {
-        0, 0
-};
+    int2 _tmpvar_61042;
 
     (_tmpvar_61042.x = int_ctor((2 * (uint_ctor(_instance_picture_task_address_11037) % 512))));
 
     (_tmpvar_61042.y = int_ctor((uint_ctor(_instance_picture_task_address_11037) / 512)));
 
-    float2 _tmpvar_71043 =
-    {
-        0, 0
-};
+    float2 _tmpvar_71043 = (_tmpvar_31039.xy + (_tmpvar_31039.zw * _aPosition));
 
-    (_tmpvar_71043 = (_tmpvar_31039.xy + (_tmpvar_31039.zw * _aPosition)));
-
-    float4 _tmpvar_81044 =
-    {
+    float4 _tmpvar_81044 = {
         0, 0, 0, 0
 };
 
@@ -206,62 +176,39 @@ VS_OUTPUT main(VS_INPUT input)
 
     (gl_Position = mul(transpose(_uTransform), _tmpvar_81044));
 
-    float2 _texture_size =
-    {
-        0, 0
-};
+    float2 _texture_size = {0, 0 };
 
-    int2 _tmpvar_101046 =
-    {
-        0, 0
-};
+    int2 _tmpvar_101046;
 
     (_tmpvar_101046.x = int_ctor((uint_ctor(_tmpvar_51041.y) % 1024)));
 
     (_tmpvar_101046.y = int_ctor((uint_ctor(_tmpvar_51041.y) / 1024)));
 
-    int _tmpvar_111047 =
-    {
-        0
-};
+    int _tmpvar_111047 = int_ctor(gl_texture2DFetch(_sGpuCache, _tmpvar_101046, 0).z);
 
-    (_tmpvar_111047 = int_ctor(gl_texture2DFetch(_sGpuCache, _tmpvar_101046, 0).z));
+    float2 _tmpvar_121048 = (float2(427.0, 640.0) * ((_tmpvar_71043 - _tmpvar_31039.xy) / _tmpvar_31039.zw));
 
-    float2 _tmpvar_121048 =
-    {
-        0, 0
-};
-
-    (_tmpvar_121048 = (float2(427.0, 640.0) * ((_tmpvar_71043 - _tmpvar_31039.xy) / _tmpvar_31039.zw)));
-
-    (_vUv_Y = _tmpvar_121048);
+    //(_vUv_Y = _tmpvar_121048);
 
     if ((_tmpvar_111047 == 1))
     {
-
-        (_texture_size = vec2_ctor(gl_texture2DSize(_sColor0, 0)));
-
+        _texture_size = vec2_ctor(gl_texture2DSize(_sColor0, 0));
     }
-
-
     else 
-
-    {
-
+    
         if ((_tmpvar_111047 == 0))
-
         {
 
-            (_texture_size = vec2_ctor(gl_texture2DSize(_sColor0, 0)));
+            _texture_size = vec2_ctor(gl_texture2DSize(_sColor0, 0));
 
         }
-   else if ((_tmpvar_111047 == 2))
+    if ((_tmpvar_111047 == 2))
     {
-        (_texture_size = vec2_ctor(gl_texture2DSize(_sColor0, 0)));
+        _texture_size = vec2_ctor(gl_texture2DSize(_sColor0, 0));
     }
-    }
+    
 
-    (_vUv_Y = (_tmpvar_121048 / _texture_size));
+    _vUv_Y = (_tmpvar_121048 / _texture_size);
 
     return generateOutput(input);
 }
