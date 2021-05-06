@@ -58,40 +58,16 @@ void RunFrame0Part00(uint64_t frameIndex)
     NV_CHECK_RESULT(result);
     NV_MEMCPY_IN_FRAME(D3D11_MAPPED_SUBRESOURCE_temp_3.pData, NV_GET_RESOURCE(void*, 2), 576ull); // Applying update 0 to mapped data
     My_ID3D11DeviceContext_Unmap(pID3D11DeviceContext_uid_5, ((ID3D11Resource*)pID3D11Buffer_uid_70), 0u);
-    My_ID3D11DeviceContext_IASetInputLayout(pID3D11DeviceContext_uid_5, pID3D11InputLayout_uid_71);
 
-    static ID3D11Buffer* pID3D11Buffer_temp_2[16] = { pID3D11Buffer_uid_24, pID3D11Buffer_uid_24 };
-    static UINT UINT_temp_1[16] = { 16u, 4u };
-    static UINT UINT_temp_2[16] = { 5040u, 5024u };
-    My_ID3D11DeviceContext_IASetVertexBuffers(pID3D11DeviceContext_uid_5, 0u, 16u, pID3D11Buffer_temp_2, UINT_temp_1, UINT_temp_2);
-
-    My_ID3D11DeviceContext_IASetPrimitiveTopology(pID3D11DeviceContext_uid_5, D3D_PRIMITIVE_TOPOLOGY_POINTLIST);
+ 
 
 
     My_D3DPERF_EndEvent();
-    My_ID3D11DeviceContext_Flush(pID3D11DeviceContext_uid_5);
     My_D3DPERF_BeginEvent(0, L"draw frame");
     My_D3DPERF_BeginEvent(0, L"data init");
 
-    // Only map and populate this transient staging resource on the first frame
-    static bool staticbool_temp_1 = true;
-    if (staticbool_temp_1)
-    {
-        BEGIN_DATA_SCOPE();
 
-        staticbool_temp_1 = false;
-
-        // Map #3 [0...16]
-        D3D11_MAPPED_SUBRESOURCE D3D11_MAPPED_SUBRESOURCE_temp_4;
-        result = My_ID3D11DeviceContext_Map(pID3D11DeviceContext_uid_5, ((ID3D11Resource*)pID3D11Buffer_uid_72), 0u, D3D11_MAP_WRITE, 0, &D3D11_MAPPED_SUBRESOURCE_temp_4);
-        NV_CHECK_RESULT(result);
-        NV_MEMCPY_IN_FRAME(D3D11_MAPPED_SUBRESOURCE_temp_4.pData, NV_GET_RESOURCE(void*, 3), 4096ull); // Applying update 0 to mapped data
-    }
-
-    My_ID3D11DeviceContext_Unmap(pID3D11DeviceContext_uid_5, ((ID3D11Resource*)pID3D11Buffer_uid_72), 0u);
-
-    static D3D11_BOX D3D11_BOX_temp_1 = {0u, 0u, 0u, 1048576u, 1u, 1u};
-    My_ID3D11DeviceContext_CopySubresourceRegion(pID3D11DeviceContext_uid_5, pID3D11Resource_uid_77, 0u, 0u, 0u, 0u, ((ID3D11Resource*)pID3D11Buffer_uid_72), 0u, &D3D11_BOX_temp_1);
+    //My_ID3D11DeviceContext_CopySubresourceRegion(pID3D11DeviceContext_uid_5, pID3D11Resource_uid_77, 0u, 0u, 0u, 0u, ((ID3D11Resource*)pID3D11Buffer_uid_72), 0u, &D3D11_BOX_temp_1);
 
 
 
