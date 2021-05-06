@@ -140,73 +140,36 @@ VS_OUTPUT main(VS_INPUT input)
 
     int _instance_picture_task_address_11037 = (_aData.y >> 16);
 
-    int2 _tmpvar_21038;
-
-    (_tmpvar_21038.x = int_ctor((2 * (uint_ctor(_aData.x) % 512))));
-
-    (_tmpvar_21038.y = int_ctor((uint_ctor(_aData.x) / 512)));
-
     float4 _tmpvar_31039 = gl_texture2DFetch(_sPrimitiveHeadersF, int2(int_ctor((2 * (uint_ctor(_aData.x) % 512))), int_ctor((uint_ctor(_aData.x) / 512))), 0);
 
-    int2 _tmpvar_41040;
-
-    (_tmpvar_41040.x = int_ctor((2 * (uint_ctor(_aData.x) % 512))));
-
-    (_tmpvar_41040.y = int_ctor((uint_ctor(_aData.x) / 512)));
+    int2 _tmpvar_41040 = {int_ctor((2 * (uint_ctor(_aData.x) % 512))), int_ctor((uint_ctor(_aData.x) / 512))};
 
     int4 _tmpvar_51041 = gl_texture2D_int4_Fetch(_sPrimitiveHeadersI, _tmpvar_41040, 0);
 
-    int2 _tmpvar_61042;
-
-    (_tmpvar_61042.x = int_ctor((2 * (uint_ctor(_instance_picture_task_address_11037) % 512))));
-
-    (_tmpvar_61042.y = int_ctor((uint_ctor(_instance_picture_task_address_11037) / 512)));
+    int2 _tmpvar_61042 = {int_ctor((2 * (uint_ctor(_instance_picture_task_address_11037) % 512))), int_ctor((uint_ctor(_instance_picture_task_address_11037) / 512)) };
 
     float2 _tmpvar_71043 = (_tmpvar_31039.xy + (_tmpvar_31039.zw * _aPosition));
 
-    float4 _tmpvar_81044 = {
-        0, 0, 0, 0
-};
+    float4 _tmpvar_81044 = {0, 0, 0, 0};
 
     (_tmpvar_81044.xy = (_tmpvar_71043 + ((-gl_texture2DFetch(_sRenderTasks, (_tmpvar_61042 + int2(1, 0)), 0).yz) + gl_texture2DFetch(_sRenderTasks, _tmpvar_61042, 0).xy)));
-
     (_tmpvar_81044.z = float_ctor(_tmpvar_51041.x));
-
     (_tmpvar_81044.w = 1.0);
-
     (gl_Position = mul(transpose(_uTransform), _tmpvar_81044));
 
     float2 texture_size = {0, 0 };
 
-    int2 _tmpvar_101046;
-
-    (_tmpvar_101046.x = int_ctor((uint_ctor(_tmpvar_51041.y) % 1024)));
-
-    (_tmpvar_101046.y = int_ctor((uint_ctor(_tmpvar_51041.y) / 1024)));
-
-    int format = int_ctor(gl_texture2DFetch(_sGpuCache, _tmpvar_101046, 0).z);
+    int format = int_ctor(gl_texture2DFetch(_sGpuCache, int2(int_ctor((uint_ctor(_tmpvar_51041.y) % 1024)), int_ctor((uint_ctor(_tmpvar_51041.y) / 1024))), 0).z);
 
     float2 uv = (float2(427.0, 640.0) * ((_tmpvar_71043 - _tmpvar_31039.xy) / _tmpvar_31039.zw));
 
-    //(_vUv_Y = _tmpvar_121048);
-
-    if (format == 1)
-    {
+    if (format == 1) {
+        texture_size = vec2_ctor(gl_texture2DSize(_sColor0, 0));
+    } else if (format == 0) {
+        texture_size = vec2_ctor(gl_texture2DSize(_sColor0, 0));
+    } if (format == 2) {
         texture_size = vec2_ctor(gl_texture2DSize(_sColor0, 0));
     }
-    else 
-    
-        if (format == 0)
-        {
-
-            texture_size = vec2_ctor(gl_texture2DSize(_sColor0, 0));
-
-        }
-    if (format == 2)
-    {
-        texture_size = vec2_ctor(gl_texture2DSize(_sColor0, 0));
-    }
-    
 
     _vUv_Y = (uv / texture_size);
 
