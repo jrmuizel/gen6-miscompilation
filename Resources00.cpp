@@ -9,6 +9,8 @@
 #include <d3d9.h>
 #include <d3d11.h>
 #include <dxgi1_2.h>
+#include <d3dcompiler.h>
+#pragma comment(lib, "d3dcompiler")
 
 #ifndef FUNCTION_OVERRIDES_H_DEF
 #include "function_overrides.h"
@@ -416,7 +418,23 @@ void CreateResources00()
     NV_CHECK_RESULT(result);
     NV_SET_OBJECT_NAME(pID3D11PixelShader_uid_101, "PixelShader 7");
 
-    result = My_ID3D11Device_CreateVertexShader(pID3D11Device_uid_4, NV_GET_RESOURCE(const void*, 60), 2800ull, NULL, &pID3D11VertexShader_uid_103);
+    ID3DBlob* vsBlob;
+    ID3DBlob* errors;
+
+    D3DCompileFromFile(L"..\\vs.hlsl", nullptr, nullptr, "main", "vs_4_1", D3DCOMPILE_OPTIMIZATION_LEVEL2, 0, &vsBlob, &errors);
+    if (errors) {
+        OutputDebugStringA("Failed to compile");
+                    OutputDebugStringA( (char*)errors->GetBufferPointer() );
+
+        exit(1);
+    }
+
+    //ID3D11VertexShader* vertexShader;
+
+    //device->CreateVertexShader(vsBlob->GetBufferPointer(), vsBlob->GetBufferSize(), nullptr, &vertexShader);
+    result = My_ID3D11Device_CreateVertexShader(pID3D11Device_uid_4, vsBlob->GetBufferPointer(), vsBlob->GetBufferSize(), NULL, &pID3D11VertexShader_uid_103);
+    
+    //result = My_ID3D11Device_CreateVertexShader(pID3D11Device_uid_4, NV_GET_RESOURCE(const void*, 60), 2800ull, NULL, &pID3D11VertexShader_uid_103);
     NV_CHECK_RESULT(result);
     NV_SET_OBJECT_NAME(pID3D11VertexShader_uid_103, "VertexShader 5");
 
