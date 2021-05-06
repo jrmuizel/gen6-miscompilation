@@ -114,11 +114,8 @@ void RunFrame0Part00(uint64_t frameIndex)
     static D3D11_BOX D3D11_BOX_temp_1 = {0u, 0u, 0u, 1048576u, 1u, 1u};
     My_ID3D11DeviceContext_CopySubresourceRegion(pID3D11DeviceContext_uid_5, pID3D11Resource_uid_77, 0u, 0u, 0u, 0u, ((ID3D11Resource*)pID3D11Buffer_uid_72), 0u, &D3D11_BOX_temp_1);
 
-    My_ID3D11DeviceContext_VSSetShader(pID3D11DeviceContext_uid_5, pID3D11VertexShader_uid_58, nullptr, 0u);
     My_ID3D11DeviceContext_GSSetShader(pID3D11DeviceContext_uid_5, NULL, nullptr, 0u);
-    My_ID3D11DeviceContext_PSSetShader(pID3D11DeviceContext_uid_5, pID3D11PixelShader_uid_60, nullptr, 0u);
-    My_ID3D11DeviceContext_PSSetShaderResources(pID3D11DeviceContext_uid_5, 0u, 1u, &pID3D11ShaderResourceView_uid_78);
-    My_ID3D11DeviceContext_IASetInputLayout(pID3D11DeviceContext_uid_5, NULL);
+
 
 
     My_D3DPERF_EndEvent();
