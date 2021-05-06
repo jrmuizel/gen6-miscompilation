@@ -29,64 +29,21 @@ void RunFrame0Part00(uint64_t frameIndex)
 {
     BEGIN_DATA_SCOPE_FUNCTION();
 
-    My_D3DPERF_BeginEvent(0, L"build samples");
-    My_D3DPERF_EndEvent();
-    My_D3DPERF_BeginEvent(0, L"begin frame");
-    My_D3DPERF_BeginEvent(0, L"texture cache update");
-    My_D3DPERF_EndEvent();
-    My_D3DPERF_EndEvent();
-    My_D3DPERF_BeginEvent(0, L"gpu cache update");
-
-    // Map #0 [0...16]
-    D3D11_MAPPED_SUBRESOURCE D3D11_MAPPED_SUBRESOURCE_temp_1;
-    result = My_ID3D11DeviceContext_Map(pID3D11DeviceContext_uid_5, ((ID3D11Resource*)pID3D11Buffer_uid_24), 0u, D3D11_MAP_WRITE_DISCARD, 0, &D3D11_MAPPED_SUBRESOURCE_temp_1);
-    NV_CHECK_RESULT(result);
-    NV_MEMCPY_IN_FRAME(D3D11_MAPPED_SUBRESOURCE_temp_1.pData, NV_GET_RESOURCE(void*, 0), 1048576ull); // Applying update 0 to mapped data
-    My_ID3D11DeviceContext_Unmap(pID3D11DeviceContext_uid_5, ((ID3D11Resource*)pID3D11Buffer_uid_24), 0u);
 
 
-    // Map #1 [0...16]
-    D3D11_MAPPED_SUBRESOURCE D3D11_MAPPED_SUBRESOURCE_temp_2;
-    result = My_ID3D11DeviceContext_Map(pID3D11DeviceContext_uid_5, ((ID3D11Resource*)pID3D11Buffer_uid_69), 0u, D3D11_MAP_WRITE_DISCARD, 0, &D3D11_MAPPED_SUBRESOURCE_temp_2);
-    NV_CHECK_RESULT(result);
-    NV_MEMCPY_IN_FRAME(D3D11_MAPPED_SUBRESOURCE_temp_2.pData, NV_GET_RESOURCE(void*, 1), 576ull); // Applying update 0 to mapped data
-    My_ID3D11DeviceContext_Unmap(pID3D11DeviceContext_uid_5, ((ID3D11Resource*)pID3D11Buffer_uid_69), 0u);
-
-    // Map #2 [0...16]
-    D3D11_MAPPED_SUBRESOURCE D3D11_MAPPED_SUBRESOURCE_temp_3;
-    result = My_ID3D11DeviceContext_Map(pID3D11DeviceContext_uid_5, ((ID3D11Resource*)pID3D11Buffer_uid_70), 0u, D3D11_MAP_WRITE_DISCARD, 0, &D3D11_MAPPED_SUBRESOURCE_temp_3);
-    NV_CHECK_RESULT(result);
-    NV_MEMCPY_IN_FRAME(D3D11_MAPPED_SUBRESOURCE_temp_3.pData, NV_GET_RESOURCE(void*, 2), 576ull); // Applying update 0 to mapped data
-    My_ID3D11DeviceContext_Unmap(pID3D11DeviceContext_uid_5, ((ID3D11Resource*)pID3D11Buffer_uid_70), 0u);
-
- 
-
-
-    My_D3DPERF_EndEvent();
     My_D3DPERF_BeginEvent(0, L"draw frame");
-    My_D3DPERF_BeginEvent(0, L"data init");
 
-
-    //My_ID3D11DeviceContext_CopySubresourceRegion(pID3D11DeviceContext_uid_5, pID3D11Resource_uid_77, 0u, 0u, 0u, 0u, ((ID3D11Resource*)pID3D11Buffer_uid_72), 0u, &D3D11_BOX_temp_1);
-
-
-
-
-    My_D3DPERF_EndEvent();
     My_D3DPERF_BeginEvent(0, L"pass 0");
     My_D3DPERF_BeginEvent(0, L"picture cache target");
-    My_D3DPERF_BeginEvent(0, L"target init");
 
 
 
-    static D3D11_VIEWPORT D3D11_VIEWPORT_temp_6[1] = { {0.0f, 0.0f, HexToFloat(0x44800000/*1024.0f*/), HexToFloat(0x44000000/*512.0f*/), 0.0f, HexToFloat(0x3F800000/*1.0f*/)} };
+    static D3D11_VIEWPORT D3D11_VIEWPORT_temp_6[1] = { {0.0f, 0.0f, 1024.0f, 512.0f, 0.0f, 1.0f} };
     My_ID3D11DeviceContext_RSSetViewports(pID3D11DeviceContext_uid_5, 1u, D3D11_VIEWPORT_temp_6);
-
-
 
     My_ID3D11DeviceContext_IASetPrimitiveTopology(pID3D11DeviceContext_uid_5, D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-    My_D3DPERF_EndEvent();
+
     My_D3DPERF_BeginEvent(0, L"opaque batches");
     My_D3DPERF_BeginEvent(0, L"B_YuvImage");
     FLOAT color[4] = { 1., 1, 1, 1};
