@@ -120,18 +120,6 @@ void RunFrame0Part00(uint64_t frameIndex)
     My_ID3D11DeviceContext_PSSetShaderResources(pID3D11DeviceContext_uid_5, 0u, 1u, &pID3D11ShaderResourceView_uid_78);
     My_ID3D11DeviceContext_IASetInputLayout(pID3D11DeviceContext_uid_5, NULL);
 
-    static ID3D11Buffer* pID3D11Buffer_temp_3[1] = { NULL };
-    static UINT UINT_temp_3[1] = { 0u };
-    static UINT UINT_temp_4[1] = { 0u };
-    My_ID3D11DeviceContext_IASetVertexBuffers(pID3D11DeviceContext_uid_5, 0u, 1u, pID3D11Buffer_temp_3, UINT_temp_3, UINT_temp_4);
-
-    static FLOAT FLOAT_temp_2;
-    My_ID3D11DeviceContext_OMSetBlendState(pID3D11DeviceContext_uid_5, NULL, nullptr, 0xFFFFFFFFu);
-
-    My_ID3D11DeviceContext_OMSetDepthStencilState(pID3D11DeviceContext_uid_5, pID3D11DepthStencilState_uid_56, 4294967295u);
-    My_ID3D11DeviceContext_RSSetState(pID3D11DeviceContext_uid_5, pID3D11RasterizerState_uid_39);
-    My_ID3D11DeviceContext_OMSetRenderTargets(pID3D11DeviceContext_uid_5, 1u, &pID3D11RenderTargetView_uid_130, NULL);
-
 
     My_D3DPERF_EndEvent();
     My_D3DPERF_BeginEvent(0, L"pass 0");
