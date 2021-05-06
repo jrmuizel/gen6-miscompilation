@@ -148,7 +148,7 @@ VS_OUTPUT main(VS_INPUT input)
     float4 _tmpvar_81044 = {0, 0, 0, 0};
 
     (_tmpvar_81044.xy = (_tmpvar_71043 + ((-gl_texture2DFetch(_sRenderTasks, (_tmpvar_61042 + int2(1, 0)), 0).yz) + gl_texture2DFetch(_sRenderTasks, _tmpvar_61042, 0).xy)));
-    (_tmpvar_81044.z = float_ctor(_tmpvar_51041.x));
+    (_tmpvar_81044.z = 1.0);
     (_tmpvar_81044.w = 1.0);
     (gl_Position = mul(transpose(_uTransform), _tmpvar_81044));
 
