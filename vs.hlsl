@@ -141,13 +141,8 @@ VS_OUTPUT main(VS_INPUT input)
     int _instance_picture_task_address_11037 = (_aData.y >> 16);
 
     float4 _tmpvar_31039 = gl_texture2DFetch(_sPrimitiveHeadersF, int2(int_ctor((2 * (uint_ctor(_aData.x) % 512))), int_ctor((uint_ctor(_aData.x) / 512))), 0);
-
-    int2 _tmpvar_41040 = {int_ctor((2 * (uint_ctor(_aData.x) % 512))), int_ctor((uint_ctor(_aData.x) / 512))};
-
-    int4 _tmpvar_51041 = gl_texture2D_int4_Fetch(_sPrimitiveHeadersI, _tmpvar_41040, 0);
-
+    int4 _tmpvar_51041 = gl_texture2D_int4_Fetch(_sPrimitiveHeadersI, int2(int_ctor((2 * (uint_ctor(_aData.x) % 512))), int_ctor((uint_ctor(_aData.x) / 512))), 0);
     int2 _tmpvar_61042 = {int_ctor((2 * (uint_ctor(_instance_picture_task_address_11037) % 512))), int_ctor((uint_ctor(_instance_picture_task_address_11037) / 512)) };
-
     float2 _tmpvar_71043 = (_tmpvar_31039.xy + (_tmpvar_31039.zw * _aPosition));
 
     float4 _tmpvar_81044 = {0, 0, 0, 0};
