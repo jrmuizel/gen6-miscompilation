@@ -395,36 +395,7 @@ void RunFrame0Part00(uint64_t frameIndex)
     My_ID3D11DeviceContext_End(pID3D11DeviceContext_uid_5, ((ID3D11Asynchronous*)pID3D11Query_uid_225));
     My_D3DPERF_EndEvent();
 
-    // Map #16 [0...16]
-    D3D11_MAPPED_SUBRESOURCE D3D11_MAPPED_SUBRESOURCE_temp_17;
-    result = My_ID3D11DeviceContext_Map(pID3D11DeviceContext_uid_5, ((ID3D11Resource*)pID3D11Buffer_uid_34), 0u, D3D11_MAP_WRITE_DISCARD, 0, &D3D11_MAPPED_SUBRESOURCE_temp_17);
-    NV_CHECK_RESULT(result);
-    NV_MEMCPY_IN_FRAME(D3D11_MAPPED_SUBRESOURCE_temp_17.pData, NV_GET_RESOURCE(void*, 16), 64ull); // Applying update 0 to mapped data
-    My_ID3D11DeviceContext_Unmap(pID3D11DeviceContext_uid_5, ((ID3D11Resource*)pID3D11Buffer_uid_34), 0u);
-
-    static UINT UINT_temp_11[1] = { 16u };
-    static UINT UINT_temp_12[1] = { 0u };
-    My_ID3D11DeviceContext_IASetVertexBuffers(pID3D11DeviceContext_uid_5, 0u, 1u, &pID3D11Buffer_uid_34, UINT_temp_11, UINT_temp_12);
-
-    My_ID3D11DeviceContext_OMSetDepthStencilState(pID3D11DeviceContext_uid_5, NULL, 4294967295u);
-
-    static FLOAT FLOAT_temp_10;
-    My_ID3D11DeviceContext_OMSetBlendState(pID3D11DeviceContext_uid_5, NULL, nullptr, 0xFFFFFFFFu);
-
-    My_ID3D11DeviceContext_RSSetState(pID3D11DeviceContext_uid_5, pID3D11RasterizerState_uid_39);
-    My_ID3D11DeviceContext_IASetInputLayout(pID3D11DeviceContext_uid_5, pID3D11InputLayout_uid_36);
-    My_ID3D11DeviceContext_IASetPrimitiveTopology(pID3D11DeviceContext_uid_5, D3D_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-    My_ID3D11DeviceContext_VSSetShader(pID3D11DeviceContext_uid_5, pID3D11VertexShader_uid_37, nullptr, 0u);
-    My_ID3D11DeviceContext_PSSetShader(pID3D11DeviceContext_uid_5, pID3D11PixelShader_uid_38, nullptr, 0u);
-    My_ID3D11DeviceContext_OMSetRenderTargets(pID3D11DeviceContext_uid_5, 1u, &pID3D11RenderTargetView_uid_16, NULL);
-
-    static D3D11_VIEWPORT D3D11_VIEWPORT_temp_8[1] = { {0.0f, 0.0f, HexToFloat(0x44F00000/*1920.0f*/), HexToFloat(0x44870000/*1080.0f*/), 0.0f, HexToFloat(0x3F800000/*1.0f*/)} };
-    My_ID3D11DeviceContext_RSSetViewports(pID3D11DeviceContext_uid_5, 1u, D3D11_VIEWPORT_temp_8);
-
-    My_ID3D11DeviceContext_PSSetShaderResources(pID3D11DeviceContext_uid_5, 0u, 1u, &pID3D11ShaderResourceView_uid_20);
-    My_ID3D11DeviceContext_PSSetSamplers(pID3D11DeviceContext_uid_5, 0u, 1u, &pID3D11SamplerState_uid_35);
-
-    // Draw #8 [0...8]
+ 
     //My_ID3D11DeviceContext_Draw(pID3D11DeviceContext_uid_5, 4u, 0u);
 
     static RECT RECT_temp_1[1] = { {0, 0, 1920, 1080} };
