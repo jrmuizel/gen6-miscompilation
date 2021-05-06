@@ -276,7 +276,8 @@ void RunFrame0Part00(uint64_t frameIndex)
     My_D3DPERF_EndEvent();
     My_D3DPERF_BeginEvent(0, L"opaque batches");
     My_D3DPERF_BeginEvent(0, L"B_YuvImage");
-
+    FLOAT color[4] = { 1., 1, 1, 1};
+    My_ID3D11DeviceContext_ClearRenderTargetView(pID3D11DeviceContext_uid_5, pID3D11RenderTargetView_uid_16, color);
     // Map #11 [0...16]
     D3D11_MAPPED_SUBRESOURCE D3D11_MAPPED_SUBRESOURCE_temp_12;
     result = My_ID3D11DeviceContext_Map(pID3D11DeviceContext_uid_5, ((ID3D11Resource*)pID3D11Buffer_uid_24), 0u, D3D11_MAP_WRITE_NO_OVERWRITE, 0, &D3D11_MAPPED_SUBRESOURCE_temp_12);
@@ -341,7 +342,7 @@ void RunFrame0Part00(uint64_t frameIndex)
     NV_CHECK_RESULT(result);
     NV_MEMCPY_IN_FRAME(((unsigned char*)D3D11_MAPPED_SUBRESOURCE_temp_14.pData) + 5130ull, NV_GET_RESOURCE(void*, 13), 54ull); // Applying update 3 to mapped data
     My_ID3D11DeviceContext_Unmap(pID3D11DeviceContext_uid_5, ((ID3D11Resource*)pID3D11Buffer_uid_24), 0u);
-    My_ID3D11DeviceContext_OMSetRenderTargets(pID3D11DeviceContext_uid_5, 1u, &pID3D11RenderTargetView_uid_19, pID3D11DepthStencilView_uid_22);
+    My_ID3D11DeviceContext_OMSetRenderTargets(pID3D11DeviceContext_uid_5, 1u, &pID3D11RenderTargetView_uid_16, pID3D11DepthStencilView_uid_22);
 
     static D3D11_VIEWPORT D3D11_VIEWPORT_temp_7[1] = { {0.0f, 0.0f, HexToFloat(0x44F00000/*1920.0f*/), HexToFloat(0x44870000/*1080.0f*/), 0.0f, HexToFloat(0x3F800000/*1.0f*/)} };
     My_ID3D11DeviceContext_RSSetViewports(pID3D11DeviceContext_uid_5, 1u, D3D11_VIEWPORT_temp_7);
@@ -424,7 +425,7 @@ void RunFrame0Part00(uint64_t frameIndex)
     My_ID3D11DeviceContext_PSSetSamplers(pID3D11DeviceContext_uid_5, 0u, 1u, &pID3D11SamplerState_uid_35);
 
     // Draw #8 [0...8]
-    My_ID3D11DeviceContext_Draw(pID3D11DeviceContext_uid_5, 4u, 0u);
+    //My_ID3D11DeviceContext_Draw(pID3D11DeviceContext_uid_5, 4u, 0u);
 
     static RECT RECT_temp_1[1] = { {0, 0, 1920, 1080} };
     static DXGI_PRESENT_PARAMETERS DXGI_PRESENT_PARAMETERS_temp_1 = {1u, RECT_temp_1, NULL, NULL};
