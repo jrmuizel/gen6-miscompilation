@@ -219,43 +219,11 @@ void RunFrame0Part00(uint64_t frameIndex)
     My_D3DPERF_BeginEvent(0, L"picture cache target");
     My_D3DPERF_BeginEvent(0, L"target init");
 
-    // Map #8 [0...16]
-    D3D11_MAPPED_SUBRESOURCE D3D11_MAPPED_SUBRESOURCE_temp_9;
-    result = My_ID3D11DeviceContext_Map(pID3D11DeviceContext_uid_5, ((ID3D11Resource*)pID3D11Buffer_uid_24), 0u, D3D11_MAP_WRITE_NO_OVERWRITE, 0, &D3D11_MAPPED_SUBRESOURCE_temp_9);
-    NV_CHECK_RESULT(result);
-    NV_MEMCPY_IN_FRAME(((unsigned char*)D3D11_MAPPED_SUBRESOURCE_temp_9.pData) + 5074ull, NV_GET_RESOURCE(void*, 8), 30ull); // Applying update 1 to mapped data
-    My_ID3D11DeviceContext_Unmap(pID3D11DeviceContext_uid_5, ((ID3D11Resource*)pID3D11Buffer_uid_24), 0u);
 
-    static ID3D11ShaderResourceView* pID3D11ShaderResourceView_temp_6[1] = { NULL };
-    My_ID3D11DeviceContext_VSSetShaderResources(pID3D11DeviceContext_uid_5, 0u, 1u, pID3D11ShaderResourceView_temp_6);
-
-    My_ID3D11DeviceContext_OMSetRenderTargets(pID3D11DeviceContext_uid_5, 1u, &pID3D11RenderTargetView_uid_42, pID3D11DepthStencilView_uid_45);
 
     static D3D11_VIEWPORT D3D11_VIEWPORT_temp_6[1] = { {0.0f, 0.0f, HexToFloat(0x44800000/*1024.0f*/), HexToFloat(0x44000000/*512.0f*/), 0.0f, HexToFloat(0x3F800000/*1.0f*/)} };
     My_ID3D11DeviceContext_RSSetViewports(pID3D11DeviceContext_uid_5, 1u, D3D11_VIEWPORT_temp_6);
 
-    My_ID3D11DeviceContext_RSSetState(pID3D11DeviceContext_uid_5, pID3D11RasterizerState_uid_39);
-
-    static FLOAT FLOAT_temp_6[4] = { 0.0f };
-    My_ID3D11DeviceContext_OMSetBlendState(pID3D11DeviceContext_uid_5, pID3D11BlendState_uid_7, FLOAT_temp_6, 0xFFFFFFFFu);
-
-    My_ID3D11DeviceContext_OMSetDepthStencilState(pID3D11DeviceContext_uid_5, pID3D11DepthStencilState_uid_56, 0u);
-    My_ID3D11DeviceContext_VSSetShader(pID3D11DeviceContext_uid_5, pID3D11VertexShader_uid_95, nullptr, 0u);
-    My_ID3D11DeviceContext_PSSetShader(pID3D11DeviceContext_uid_5, pID3D11PixelShader_uid_93, nullptr, 0u);
-
-    static ID3D11ShaderResourceView* pID3D11ShaderResourceView_temp_7[1] = { NULL };
-    My_ID3D11DeviceContext_PSSetShaderResources(pID3D11DeviceContext_uid_5, 0u, 1u, pID3D11ShaderResourceView_temp_7);
-
-    My_ID3D11DeviceContext_VSSetConstantBuffers(pID3D11DeviceContext_uid_5, 0u, 1u, &pID3D11Buffer_uid_97);
-
-    // Map #9 [0...16]
-    D3D11_MAPPED_SUBRESOURCE D3D11_MAPPED_SUBRESOURCE_temp_10;
-    result = My_ID3D11DeviceContext_Map(pID3D11DeviceContext_uid_5, ((ID3D11Resource*)pID3D11Buffer_uid_69), 0u, D3D11_MAP_WRITE_DISCARD, 0, &D3D11_MAPPED_SUBRESOURCE_temp_10);
-    NV_CHECK_RESULT(result);
-    NV_MEMCPY_IN_FRAME(D3D11_MAPPED_SUBRESOURCE_temp_10.pData, NV_GET_RESOURCE(void*, 9), 576ull); // Applying update 1 to mapped data
-    My_ID3D11DeviceContext_Unmap(pID3D11DeviceContext_uid_5, ((ID3D11Resource*)pID3D11Buffer_uid_69), 0u);
-
-    // Map #10 [0...16]
 
 
     My_ID3D11DeviceContext_IASetPrimitiveTopology(pID3D11DeviceContext_uid_5, D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
