@@ -146,7 +146,7 @@ VS_OUTPUT main(VS_INPUT input)
 
     (_tmpvar_21038.y = int_ctor((uint_ctor(_aData.x) / 512)));
 
-    float4 _tmpvar_31039 = gl_texture2DFetch(_sPrimitiveHeadersF, _tmpvar_21038, 0);
+    float4 _tmpvar_31039 = gl_texture2DFetch(_sPrimitiveHeadersF, int2(int_ctor((2 * (uint_ctor(_aData.x) % 512))), int_ctor((uint_ctor(_aData.x) / 512))), 0);
 
     int2 _tmpvar_41040;
 
