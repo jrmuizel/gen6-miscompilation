@@ -87,7 +87,7 @@ void RunFrame0Part00(uint64_t frameIndex)
     My_ID3D11DeviceContext_IASetPrimitiveTopology(pID3D11DeviceContext_uid_5, D3D_PRIMITIVE_TOPOLOGY_POINTLIST);
 
     // Draw #0 [0...8]
-    My_ID3D11DeviceContext_Draw(pID3D11DeviceContext_uid_5, 2u, 0u);
+    //My_ID3D11DeviceContext_Draw(pID3D11DeviceContext_uid_5, 2u, 0u);
 
     My_D3DPERF_EndEvent();
     My_ID3D11DeviceContext_Flush(pID3D11DeviceContext_uid_5);
@@ -144,7 +144,7 @@ void RunFrame0Part00(uint64_t frameIndex)
     My_ID3D11DeviceContext_RSSetViewports(pID3D11DeviceContext_uid_5, 1u, D3D11_VIEWPORT_temp_2);
 
     // Draw #1 [0...8]
-    My_ID3D11DeviceContext_Draw(pID3D11DeviceContext_uid_5, 2u, 0u);
+    //My_ID3D11DeviceContext_Draw(pID3D11DeviceContext_uid_5, 2u, 0u);
 
     My_ID3D11DeviceContext_PSSetShader(pID3D11DeviceContext_uid_5, pID3D11PixelShader_uid_61, nullptr, 0u);
     My_ID3D11DeviceContext_PSSetShaderResources(pID3D11DeviceContext_uid_5, 0u, 1u, &pID3D11ShaderResourceView_uid_83);
@@ -190,7 +190,7 @@ void RunFrame0Part00(uint64_t frameIndex)
     My_ID3D11DeviceContext_RSSetViewports(pID3D11DeviceContext_uid_5, 1u, D3D11_VIEWPORT_temp_4);
 
     // Draw #3 [0...8]
-    My_ID3D11DeviceContext_Draw(pID3D11DeviceContext_uid_5, 16u, 0u);
+    //My_ID3D11DeviceContext_Draw(pID3D11DeviceContext_uid_5, 16u, 0u);
 
     My_ID3D11DeviceContext_PSSetShaderResources(pID3D11DeviceContext_uid_5, 0u, 1u, &pID3D11ShaderResourceView_uid_78);
 
@@ -212,7 +212,7 @@ void RunFrame0Part00(uint64_t frameIndex)
     My_ID3D11DeviceContext_RSSetViewports(pID3D11DeviceContext_uid_5, 1u, D3D11_VIEWPORT_temp_5);
 
     // Draw #4 [0...8]
-    My_ID3D11DeviceContext_Draw(pID3D11DeviceContext_uid_5, 8u, 0u);
+    //My_ID3D11DeviceContext_Draw(pID3D11DeviceContext_uid_5, 8u, 0u);
 
     My_D3DPERF_EndEvent();
     My_D3DPERF_BeginEvent(0, L"pass 0");
@@ -227,9 +227,6 @@ void RunFrame0Part00(uint64_t frameIndex)
 
 
     My_ID3D11DeviceContext_IASetPrimitiveTopology(pID3D11DeviceContext_uid_5, D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
-    // Draw #5 [0...8]
-    //My_ID3D11DeviceContext_DrawIndexedInstanced(pID3D11DeviceContext_uid_5, 6u, 1u, 0u, 0, 0u);
 
     My_D3DPERF_EndEvent();
     My_D3DPERF_BeginEvent(0, L"opaque batches");
