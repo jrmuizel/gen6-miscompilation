@@ -176,7 +176,7 @@ VS_OUTPUT main(VS_INPUT input)
 
     (gl_Position = mul(transpose(_uTransform), _tmpvar_81044));
 
-    float2 _texture_size = {0, 0 };
+    float2 texture_size = {0, 0 };
 
     int2 _tmpvar_101046;
 
@@ -184,31 +184,31 @@ VS_OUTPUT main(VS_INPUT input)
 
     (_tmpvar_101046.y = int_ctor((uint_ctor(_tmpvar_51041.y) / 1024)));
 
-    int _tmpvar_111047 = int_ctor(gl_texture2DFetch(_sGpuCache, _tmpvar_101046, 0).z);
+    int format = int_ctor(gl_texture2DFetch(_sGpuCache, _tmpvar_101046, 0).z);
 
-    float2 _tmpvar_121048 = (float2(427.0, 640.0) * ((_tmpvar_71043 - _tmpvar_31039.xy) / _tmpvar_31039.zw));
+    float2 uv = (float2(427.0, 640.0) * ((_tmpvar_71043 - _tmpvar_31039.xy) / _tmpvar_31039.zw));
 
     //(_vUv_Y = _tmpvar_121048);
 
-    if ((_tmpvar_111047 == 1))
+    if (format == 1)
     {
-        _texture_size = vec2_ctor(gl_texture2DSize(_sColor0, 0));
+        texture_size = vec2_ctor(gl_texture2DSize(_sColor0, 0));
     }
     else 
     
-        if ((_tmpvar_111047 == 0))
+        if (format == 0)
         {
 
-            _texture_size = vec2_ctor(gl_texture2DSize(_sColor0, 0));
+            texture_size = vec2_ctor(gl_texture2DSize(_sColor0, 0));
 
         }
-    if ((_tmpvar_111047 == 2))
+    if (format == 2)
     {
-        _texture_size = vec2_ctor(gl_texture2DSize(_sColor0, 0));
+        texture_size = vec2_ctor(gl_texture2DSize(_sColor0, 0));
     }
     
 
-    _vUv_Y = (_tmpvar_121048 / _texture_size);
+    _vUv_Y = (uv / texture_size);
 
     return generateOutput(input);
 }
