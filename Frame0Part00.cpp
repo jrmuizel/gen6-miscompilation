@@ -284,7 +284,7 @@ void RunFrame0Part00(uint64_t frameIndex)
     NV_CHECK_RESULT(result);
     NV_MEMCPY_IN_FRAME(((unsigned char*)D3D11_MAPPED_SUBRESOURCE_temp_12.pData) + 5108ull, NV_GET_RESOURCE(void*, 11), 8ull); // Applying update 2 to mapped data
     My_ID3D11DeviceContext_Unmap(pID3D11DeviceContext_uid_5, ((ID3D11Resource*)pID3D11Buffer_uid_24), 0u);
-    My_ID3D11DeviceContext_OMSetRenderTargets(pID3D11DeviceContext_uid_5, 1u, &pID3D11RenderTargetView_uid_42, pID3D11DepthStencilView_uid_45);
+    My_ID3D11DeviceContext_OMSetRenderTargets(pID3D11DeviceContext_uid_5, 1u, &pID3D11RenderTargetView_uid_16, pID3D11DepthStencilView_uid_22);
 
     static D3D11_RECT D3D11_RECT_temp_1[1] = { {10, 10, 437, 266} };
     My_ID3D11DeviceContext_RSSetScissorRects(pID3D11DeviceContext_uid_5, 1u, D3D11_RECT_temp_1);
@@ -386,7 +386,7 @@ void RunFrame0Part00(uint64_t frameIndex)
     My_ID3D11DeviceContext_IASetVertexBuffers(pID3D11DeviceContext_uid_5, 0u, 16u, pID3D11Buffer_temp_10, UINT_temp_9, UINT_temp_10);
 
     // Draw #7 [0...8]
-    My_ID3D11DeviceContext_DrawIndexedInstanced(pID3D11DeviceContext_uid_5, 6u, 1u, 0u, 0, 0u);
+    //My_ID3D11DeviceContext_DrawIndexedInstanced(pID3D11DeviceContext_uid_5, 6u, 1u, 0u, 0, 0u);
 
     My_D3DPERF_EndEvent();
     My_D3DPERF_EndEvent();
