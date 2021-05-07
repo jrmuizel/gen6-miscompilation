@@ -138,10 +138,8 @@ VS_OUTPUT main(VS_INPUT input)
 {
     initAttributes(input);
 
-    int _instance_picture_task_address_11037 = (_aData.y >> 16);
 
-    float4 _tmpvar_31039 = {10.00, 10.00, 427.00, 256.00};//gl_texture2DFetch(_sPrimitiveHeadersF, int2(int_ctor((2 * (uint_ctor(_aData.x) % 512))), int_ctor((uint_ctor(_aData.x) / 512))), 0);
-    int2 _tmpvar_61042 = {int_ctor((2 * (uint_ctor(_instance_picture_task_address_11037) % 512))), int_ctor((uint_ctor(_instance_picture_task_address_11037) / 512)) };
+    float4 _tmpvar_31039 = {10.00, 10.00, 427.00, 256.00};
     float2 _tmpvar_71043 = (_tmpvar_31039.xy + (_tmpvar_31039.zw * _aPosition));
 
     float4 _tmpvar_81044 = {0, 0, 0, 0};
@@ -151,7 +149,7 @@ VS_OUTPUT main(VS_INPUT input)
     (_tmpvar_81044.w = 1.0);
     (gl_Position = mul(transpose(_uTransform), _tmpvar_81044));
 
-    float2 texture_size = {0, 0 };
+    float2 texture_size = {0, 0};
 
     int format = int_ctor(gl_texture2DFetch(_sGpuCache, int2(1022, 1), 0).z);
 
