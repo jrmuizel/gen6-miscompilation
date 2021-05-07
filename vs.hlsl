@@ -37,13 +37,7 @@ static const uint textureIndexOffset2D_int4_ = 4;
 static const uint samplerIndexOffset2D_int4_ = 4;
 uniform Texture2D<int4> textures2D_int4_[1] : register(t4);
 uniform SamplerState samplers2D_int4_[1] : register(s4);
-#ifdef ANGLE_ENABLE_LOOP_FLATTEN
-    #define LOOP [loop]
-    #define FLATTEN [flatten]
-#else
-    #define LOOP
-    #define FLATTEN
-#endif
+
 
 #define ATOMIC_COUNTER_ARRAY_STRIDE 4
 
@@ -127,17 +121,17 @@ VS_OUTPUT main(VS_INPUT input)
 
     (gl_Position = mul(transpose(_uTransform), float4((float2(10.00, 10.00) + (float2(427.00, 256.00) * _aPosition)), 1., 1.)));
 
-    float2 texture_size = {0., 0.};
+    float2 texture_size = {100000, 100000};
 
-    int format = int_ctor(gl_texture2DFetch(_sGpuCache, int2(1022, 1), 0).z);
+    int format = int_ctor(gl_texture2DFetch(_sGpuCache, int2(1022, 1), 0).z)*10;
 
     float2 uv = (float2(427.0, 640.0) * _aPosition);
 
-    if (format == 1) {
+    if (format == 10) {
         texture_size = vec2_ctor(gl_texture2DSize(_sColor0));
     } else if (format == 0) {
         texture_size = vec2_ctor(gl_texture2DSize(_sColor0));
-    } if (format == 2) {
+    } if (format == 20) {
         texture_size = vec2_ctor(gl_texture2DSize(_sColor0));
     }
 
