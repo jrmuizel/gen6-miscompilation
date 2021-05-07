@@ -6,22 +6,7 @@ struct VS_OUTPUT
 };
 
 
-float float_ctor(int x0)
-{
-    return float(x0);
-}
-float2 vec2_ctor(int2 x0)
-{
-    return float2(x0);
-}
-int int_ctor(float x0)
-{
-    return int(x0);
-}
-int int_ctor(uint x0)
-{
-    return int(x0);
-}
+
 
 // Uniforms
 
@@ -75,20 +60,7 @@ cbuffer DriverConstants : register(b1)
     SamplerMetadata samplerMetadata[5] : packoffset(c4);
 };
 
-int2 gl_texture2DSize(uint samplerIndex)
-{
-    int baseLevel = samplerMetadata[samplerIndex].baseLevel;
-    uint width;
-    uint height;
-    uint numberOfLevels;
-    textures2D[samplerIndex].GetDimensions(baseLevel, width, height, numberOfLevels);
-    return int2(width, height);
-}
 
-float4 gl_texture2DFetch(uint samplerIndex, int2 t, int mip)
-{
-    return textures2D[samplerIndex].Load(int3(t.x, t.y, mip));
-}
 
 struct VS_INPUT
 {
@@ -123,16 +95,16 @@ VS_OUTPUT main(VS_INPUT input)
 
     float2 texture_size = {100000, 100000};
 
-    int format = int_ctor(gl_texture2DFetch(_sGpuCache, int2(1022, 1), 0).z);
+    int format = int(textures2D[_sGpuCache].Load(int3(1022, 1, 0)).z);
 
     float2 uv = float2(427.0, 640.0) * _aPosition;
 
     if (format == 1) {
-        texture_size = float2(427.0, 640.0) * (gl_texture2DFetch(_sGpuCache, int2(1022, 1), 0).z-0.5);
+        texture_size = float2(427.0, 640.0) * (textures2D[_sGpuCache].Load(int3(1022, 1, 0)).z-0.5);
     } else if (format == 0) {
-        texture_size = float2(427.0, 640.0) * (gl_texture2DFetch(_sGpuCache, int2(1022, 1), 0).z-0.5);
+        texture_size = float2(427.0, 640.0) * (textures2D[_sGpuCache].Load(int3(1022, 1, 0)).z-0.5);
     } if (format == 2) {
-        texture_size = float2(427.0, 640.0) * (gl_texture2DFetch(_sGpuCache, int2(1022, 1), 0).z-0.5);
+        texture_size = float2(427.0, 640.0) * (textures2D[_sGpuCache].Load(int3(1022, 1, 0)).z-0.5);
     }
 
     _vUv_Y = (uv / texture_size);
