@@ -140,13 +140,13 @@ VS_OUTPUT main(VS_INPUT input)
 
     int _instance_picture_task_address_11037 = (_aData.y >> 16);
 
-    float4 _tmpvar_31039 = gl_texture2DFetch(_sPrimitiveHeadersF, int2(int_ctor((2 * (uint_ctor(_aData.x) % 512))), int_ctor((uint_ctor(_aData.x) / 512))), 0);
+    float4 _tmpvar_31039 = {10.00, 10.00, 427.00, 256.00};//gl_texture2DFetch(_sPrimitiveHeadersF, int2(int_ctor((2 * (uint_ctor(_aData.x) % 512))), int_ctor((uint_ctor(_aData.x) / 512))), 0);
     int2 _tmpvar_61042 = {int_ctor((2 * (uint_ctor(_instance_picture_task_address_11037) % 512))), int_ctor((uint_ctor(_instance_picture_task_address_11037) / 512)) };
     float2 _tmpvar_71043 = (_tmpvar_31039.xy + (_tmpvar_31039.zw * _aPosition));
 
     float4 _tmpvar_81044 = {0, 0, 0, 0};
 
-    (_tmpvar_81044.xy = (_tmpvar_71043 + ((-gl_texture2DFetch(_sRenderTasks, (_tmpvar_61042 + int2(1, 0)), 0).yz) + gl_texture2DFetch(_sRenderTasks, _tmpvar_61042, 0).xy)));
+    (_tmpvar_81044.xy = (_tmpvar_71043 + ((-float4(0.00, 0.00, 0.00, 256.00).yz) + float4(0.00, 0.00, 0.00, 256.00).xy)));
     (_tmpvar_81044.z = 1.0);
     (_tmpvar_81044.w = 1.0);
     (gl_Position = mul(transpose(_uTransform), _tmpvar_81044));
