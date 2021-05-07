@@ -119,20 +119,20 @@ VS_OUTPUT main(VS_INPUT input)
 {
     initAttributes(input);
 
-    (gl_Position = mul(transpose(_uTransform), float4((float2(10.00, 10.00) + (float2(427.00, 256.00) * _aPosition)), 1., 1.)));
+    gl_Position = mul(transpose(_uTransform), float4((float2(10.00, 10.00) + (float2(427.00, 256.00) * _aPosition)), 1., 1.));
 
     float2 texture_size = {100000, 100000};
 
-    int format = int_ctor(gl_texture2DFetch(_sGpuCache, int2(1022, 1), 0).z)*10;
+    int format = int_ctor(gl_texture2DFetch(_sGpuCache, int2(1022, 1), 0).z);
 
-    float2 uv = (float2(427.0, 640.0) * _aPosition);
+    float2 uv = float2(427.0, 640.0) * _aPosition;
 
-    if (format == 10) {
-        texture_size = vec2_ctor(gl_texture2DSize(_sColor0));
+    if (format == 1) {
+        texture_size = float2(427.0, 640.0) * (gl_texture2DFetch(_sGpuCache, int2(1022, 1), 0).z-0.5);
     } else if (format == 0) {
-        texture_size = vec2_ctor(gl_texture2DSize(_sColor0));
-    } if (format == 20) {
-        texture_size = vec2_ctor(gl_texture2DSize(_sColor0));
+        texture_size = float2(427.0, 640.0) * (gl_texture2DFetch(_sGpuCache, int2(1022, 1), 0).z-0.5);
+    } if (format == 2) {
+        texture_size = float2(427.0, 640.0) * (gl_texture2DFetch(_sGpuCache, int2(1022, 1), 0).z-0.5);
     }
 
     _vUv_Y = (uv / texture_size);
