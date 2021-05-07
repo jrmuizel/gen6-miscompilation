@@ -421,7 +421,7 @@ void CreateResources00()
     ID3DBlob* vsBlob;
     ID3DBlob* errors;
 
-    D3DCompileFromFile(L"..\\vs.hlsl", nullptr, nullptr, "main", "vs_4_1", D3DCOMPILE_OPTIMIZATION_LEVEL2, 0, &vsBlob, &errors);
+    D3DCompileFromFile(L"..\\vs.hlsl", nullptr, nullptr, "main", "vs_4_1",/*D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION */D3DCOMPILE_OPTIMIZATION_LEVEL2, 0, &vsBlob, &errors);
     if (errors) {
         OutputDebugStringA("Failed to compile");
                     OutputDebugStringA( (char*)errors->GetBufferPointer() );
