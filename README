@@ -1,3 +1,9 @@
+Displays a solid blue square when run on Intel gen6 and a gradient square elsewhere.
+
+Run directly by launching Debug/wrench.exe
+
+or
+
 Build with:
 cmake . -A x64
 cmake --build .
